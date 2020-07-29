@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "extends": ["react-app", "prettier", "google"],
+    "plugins": ["prettier"],
+    "rules": {
+        "valid-jsdoc": "off",
+        "require-jsdoc": "off",
+        "object-curly-spacing": "off",
+        "arrow-parens": "off",
+        "linebreak-style": "off",
+        "comma-dangle": "off",
+        "operator-linebreak": "off",
+        "spaced-comment": "off",
+        "space-before-function-paren": "off",
+        "no-invalid-this": "off",
+        "max-len": ["warn", { "code": 120 }],
+        "quotes": ["warn", "single"],
+        "semi": ["warn", "always"],
+        "no-loop-func": ["warn"],
+        "comma-style": ["warn", "last"],
+        "space-before-blocks": ["warn", "always"],
+        "no-mixed-spaces-and-tabs": ["warn"],
+        "no-unused-vars": ["warn"],
+        "no-extra-semi": ["warn"],
+        "no-console": ["warn"],
+        "one-var": "off",
+        "no-debugger": "warn",
+        "indent": ["warn", 4, { "SwitchCase": 1, "VariableDeclarator": 1 }]
+    }
+}
