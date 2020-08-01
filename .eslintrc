@@ -5,8 +5,19 @@
         "node": true
     },
     "parser": "babel-eslint",
-    "extends": ["react-app", "prettier", "google"],
-    "plugins": ["prettier"],
+    "extends": ["plugin:react/recommended", "google", "prettier", "prettier/react"],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "prettier"],
     "rules": {
         "valid-jsdoc": "off",
         "require-jsdoc": "off",
