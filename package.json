@@ -32,12 +32,14 @@
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-react": "^7.20.5",
         "eslint-plugin-react-hooks": "^4.0.8",
-        "prettier": "^2.0.5"
+        "prettier": "^2.0.5",
+        "react-app-rewire-aliases": "^0.2.0",
+        "react-app-rewired": "^2.1.6"
     },
     "scripts": {
-        "start": "concurrently \"yarn run essm\" \"yarn run lint\" && react-scripts start",
-        "build": "concurrently \"yarn run lint\" && react-scripts build",
-        "test": "react-scripts test",
+        "start": "concurrently \"yarn run essm\" \"yarn run lint\" && react-app-rewired start",
+        "build": "concurrently \"yarn run lint\" && react-app-rewired build",
+        "test": "react-app-rewired test",
         "eject": "react-scripts eject",
         "essm": "node ./scripts/enable-style-sourcemaps.js",
         "lint": "eslint ./src/**/*.{js,jsx}"
