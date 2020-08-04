@@ -1,7 +1,20 @@
 import React from 'react';
 import './App.css';
+import useMediaQuery from './../@theme/hooks/useMediaQuery';
 
 function App() {
+    const mq = useMediaQuery('(max-width: 600px)');
+    const isEnd = mq ? 'It matches!' : 'No match (yet)';
+    // console.log(isEnd);
+    React.useEffect(() => {
+        if (isEnd === 'It matches!') {
+            console.log(isEnd);
+        }
+
+        return () => {
+            console.log('unmount');
+        };
+    }, [isEnd]);
     return (
         <div className="App">
             <header className="App-header">
