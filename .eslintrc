@@ -41,6 +41,6 @@
         "no-console": ["warn"],
         "one-var": "off",
         "no-debugger": "warn",
-        "indent": ["warn", 4, { "SwitchCase": 1, "VariableDeclarator": 1 }]
+        "indent": "off"
     }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
-import useMediaQuery from './../@theme/hooks/useMediaQuery';
+import useMediaQuery from '@hooks/useMediaQuery';
+import axios from '@axios';
 
 function App() {
+    console.dir(axios);
     const mq = useMediaQuery('(max-width: 600px)');
     const isEnd = mq ? 'It matches!' : 'No match (yet)';
     // console.log(isEnd);
