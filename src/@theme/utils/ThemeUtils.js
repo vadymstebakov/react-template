@@ -110,6 +110,8 @@ class ThemeUtils {
     static searchInString(value, searchText) {
         return value.toLowerCase().includes(searchText);
     }
+
+    static sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export default ThemeUtils;

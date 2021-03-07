@@ -1,26 +1,46 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './App.css';
 import useMediaQuery from '@hooks/useMediaQuery';
-import axios from '@axios';
+import useToggle from '@hooks/useToggle';
+import useDebounce from '@hooks/useDebounce';
+import List from './components/List';
 
 function App() {
-    console.dir(axios);
-    const mq = useMediaQuery('(max-width: 600px)');
-    const isEnd = mq ? 'It matches!' : 'No match (yet)';
-    // console.log(isEnd);
-    React.useEffect(() => {
-        if (isEnd === 'It matches!') {
-            console.log(isEnd);
-        }
+    const isMatchMaxW600 = useMediaQuery('(max-width: 600px)');
+    const [isRotateLeft, toggleIsRotateLeft] = useToggle(true);
+    const headerRef = useRef(null);
+    const debouncedChange = useDebounce(search);
 
-        return () => {
-            console.log('unmount');
-        };
-    }, [isEnd]);
+    // console.log(headerRef.current);
+
+    useEffect(() => {
+        console.log(isMatchMaxW600);
+        if (isMatchMaxW600 && headerRef.current) {
+            headerRef.current.style.backgroundColor = 'tomato';
+        } else if (!isMatchMaxW600 && headerRef.current) {
+            headerRef.current.style.backgroundColor = '#282c34';
+        }
+    }, [isMatchMaxW600]);
+
+    function search(e) {
+        console.log(e.target.value);
+    }
+
+    const onChange = e => {
+        e.persist();
+        debouncedChange(e);
+    };
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src="assets/images/logo512.png" className="App-logo" alt="logo" />
+            <header ref={headerRef} className="App-header">
+                <img
+                    src="assets/images/logo512.png"
+                    className={isRotateLeft ? 'App-logo' : 'App-logo-back'}
+                    alt="logo"
+                    onClick={toggleIsRotateLeft}
+                />
+                <input type="text" placeholder="Debounced input" onChange={onChange} />
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
                 </p>
@@ -28,6 +48,7 @@ function App() {
                     Learn React
                 </a>
             </header>
+            <List />
         </div>
     );
 }

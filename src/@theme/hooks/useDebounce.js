@@ -1,8 +1,21 @@
-import _ from '@lodash';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
-function useDebounce(func, wait, options) {
-    return useRef(_.debounce(func, wait, options)).current;
-}
+const useDebounce = (callback, delay = 400) => {
+    const timer = useRef();
+
+    const debouncedCallback = useCallback(
+        (...args) => {
+            if (timer.current) {
+                clearTimeout(timer.current);
+            }
+            timer.current = setTimeout(() => {
+                callback(...args);
+            }, delay);
+        },
+        [callback, delay]
+    );
+
+    return debouncedCallback;
+};
 
 export default useDebounce;
